@@ -1,19 +1,50 @@
+import pygame
+from constants import *
+
 class Piece:
     def __init__(self, row, col, colour):
-        self.row = row
-        self.col = col
-        self.colour = colour
-        self.queen = False
+        self.__row = row
+        self.__col = col
+        self.__colour = colour
+        self.__queen = False
+        self.__x = 0
+        self.__y = 0
+        self.__position()
     
-    def get_position(self):
-        return self.row, self.col
+    def __position(self):
+        self.__x = self.__col * 100 + 50
+        self.__y = self.__row * 100 + 50
 
+    def get_position(self):
+        return self.__x, self.__y
+
+    def get_color(self):
+        return self.__colour
+    
     def move(self, row, col):
         self.row = row
         self.col = col
+        self.__position()
 
     def is_queen(self):
-        return self.queen
+        return self.__queen
     
     def make_queen(self):
         self.queen = True
+
+    def draw(self, win): #Work in progress
+        radius = SQUARE_SIZE // 2 - self.PADDING
+        pygame.draw.circle(win, BLACK, (self.x, self.y), radius + self.OUTLINE)
+        pygame.draw.circle(win, self.color, (self.x, self.y), radius)
+        if self.queen:
+            crown = pygame.font.SysFont("Arial", 24).render("Q", True, GREEN)
+            win.blit(crown, (self.x - crown.get_width() // 2, self.y - crown.get_height() // 2))
+
+
+class PieceFactory:
+    @staticmethod
+    def create_piece(row, col, colour, is_queen=False):
+        piece = Piece(row, col, colour)
+        if is_queen:
+            piece.make_queen()
+        return piece
