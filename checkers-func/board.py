@@ -1,7 +1,4 @@
-ROWS = 8
-COLUMNS = 8
-BLACK_SQUARE = (153, 71, 65)
-WHITE_SQUARE = (243, 224, 221)
+from constants import *
 
 class Board:
     def __init__(self):
