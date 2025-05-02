@@ -1,6 +1,6 @@
-from constants import *
-from board import *
-from move_tracker import *
+from .constants import *
+from .board import *
+from .move_tracker import *
 
 class Game:
     def __init__(self, win):

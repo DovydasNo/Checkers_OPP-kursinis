@@ -1,6 +1,6 @@
 import pygame
-from constants import *
-from piece import PieceFactory
+from .constants import *
+from .piece import PieceFactory
 
 class Board:
     def __init__(self):
