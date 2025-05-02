@@ -11,6 +11,7 @@ def get_coordinates_from_mouse(pos):
     x, y = pos
     row = y // SQUARE_SIZE
     col = x // SQUARE_SIZE
+    print(row, col)  #test
     return row, col
 
 def main():
@@ -35,8 +36,6 @@ def main():
                     game.reset()
 
         game.update()
-
     pygame.quit()
 
-if __name__ == "__main__":
-    main()
+main()

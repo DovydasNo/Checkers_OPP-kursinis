@@ -1,10 +1,7 @@
-def log_move(self, from_row, from_col, to_row, to_col, jumped):
-    log = f"{self.turn.capitalize()} moved from ({from_row}, {from_col}) to ({to_row}, {to_col})"
-    
+def log_move(turn, from_row, from_col, to_row, to_col, jumped):
+    log = f"{turn.capitalize()} moved from ({from_row}, {from_col}) to ({to_row}, {to_col})"
     if jumped:
-        log += f" capturing {[f'({Piece.row}, {Piece.col})' for Piece in jumped]}"
-    self.move_log.append(log)
-
+        log += f" capturing {[f'({p.row}, {p.col})' for p in jumped]}"
     with open("move_log.txt", "a") as f:
         f.write(log + "\n")
 
