@@ -26,7 +26,6 @@ class Game:
         clear_move_log()
         print('             Game restarted')
 
-
     def select(self, row, col):
         piece = self.get_piece(row, col)
         if self.selected:
@@ -39,8 +38,6 @@ class Game:
             self.valid_moves = self.get_valid_moves(piece)
             return True
         return False
-
-
 
     def _move(self, row, col):
         if self.selected and (row, col) in self.valid_moves:
@@ -59,7 +56,6 @@ class Game:
 
             self.change_turn()
             return True
-
         return False
 
     def change_turn(self):
@@ -69,11 +65,11 @@ class Game:
         else:
             self.turn = "white"
     
-    def get_valid_moves(self, piece):
-        return self.board.get_valid_moves(piece)
-
     def get_piece(self, row, col):
         return self.board.get_piece(row, col)
+    
+    def get_valid_moves(self, piece):
+        return self.board.get_valid_moves(piece)
 
     def remove(self, pieces):
         for piece in pieces:

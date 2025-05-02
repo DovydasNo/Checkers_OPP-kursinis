@@ -19,9 +19,6 @@ class Piece:
     def get_coordinates(self):
         return self.__x, self.__y
     
-    def get_position(self):
-        return self.__row, self.__col
-    
     def move(self, row, col):
         self.__row = row
         self.__col = col
@@ -38,8 +35,7 @@ class Piece:
         pygame.draw.circle(win, BLACK, (self.__x, self.__y), radius + OUTLINE)
         pygame.draw.circle(win, self.__colour, (self.__x, self.__y), radius)
         if self.__queen:
-            crown = pygame.font.SysFont("Arial", 24).render("Q", True, GREEN)
-            win.blit(crown, (self.__x - crown.get_width() // 2, self.__y - crown.get_height() // 2))
+            win.blit(CROWN, (self.__x - CROWN.get_width() // 2, self.__y - CROWN.get_height() // 2))
 
     @property
     def row(self):
@@ -53,10 +49,6 @@ class Piece:
     def colour(self):
         return self.__colour_name
 
-
-    @property
-    def queen(self):
-        return self.__queen
 
 class PieceFactory:
     @staticmethod

@@ -1,3 +1,5 @@
+import pygame
+
 ROWS, COLS = 8, 8
 SQUARE_SIZE = 100
 
@@ -14,9 +16,12 @@ BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
 
 DIRECTIONS = {
-    "white": [(-1, -1), (-1, 1)],  #Up
-    "black": [(1, -1), (1, 1)],    #Down
+    "white": [(-1, -1), (-1, 1)],
+    "black": [(1, -1), (1, 1)],
 }
+
+CROWN = pygame.transform.scale(pygame.image.load('checkers_func/resources/crown.png'), (50, 50))
+
 
 def make_my_text_pretty(func):
     def wrapper(*args, **kwargs):
