@@ -27,7 +27,7 @@ class Board:
             for col in range(COLS):
                 if (row + col) % 2 != 0:
                     if row < 3:
-                        self.board[row].append(PieceFactory.create_piece(row, col, BLACK))
+                        self.board[row].append(PieceFactory.create_piece(row, col, BLACK)) #Here used design patterns
                     elif row > 4:
                         self.board[row].append(PieceFactory.create_piece(row, col, WHITE))
                     else:
