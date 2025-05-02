@@ -20,10 +20,11 @@ class Game:
         self.board.draw_valid_moves(self.win, self.valid_moves)
         pygame.display.update()
 
+    @make_my_text_beautiful
     def reset(self):
         self._init()
         clear_move_log()
-        print('Game restarted')
+        print('             Game restarted')
 
 
     def select(self, row, col):
@@ -101,7 +102,9 @@ class Game:
                 self.white_count -= 1
             else:
                 self.black_count -= 1
+        return None
 
+    #@make_my_text_beautiful
     def winner(self):
         if self.white_count <= 0:
             return "black"

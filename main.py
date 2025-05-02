@@ -1,6 +1,6 @@
 import pygame
-from checkers_func.game import Game
 from checkers_func.constants import WIDTH, HEIGHT, SQUARE_SIZE
+from checkers_func.game import Game
 
 pygame.init()
 pygame.font.init()
@@ -21,6 +21,7 @@ def main():
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
+    game.reset()
 
     while run:
         clock.tick(FPS)
@@ -35,14 +36,16 @@ def main():
                 game.select(row, col)
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_r:  #Press 'R' to restart
+                if event.key == pygame.K_r:
                     game.reset()
 
         game.update()
+
         winner = game.winner()
         if winner:
             print(f"{winner.capitalize()} wins!")
             run = False
+
     pygame.quit()
 
 main()
