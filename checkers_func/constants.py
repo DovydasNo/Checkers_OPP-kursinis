@@ -18,10 +18,10 @@ DIRECTIONS = {
     "black": [(1, -1), (1, 1)],    #Down
 }
 
-def make_my_text_beautiful(func):
+def make_my_text_pretty(func):
     def wrapper(*args, **kwargs):
-        print("\n°º¤ø,__,ø¤º°`°º¤ø,__,ø¤°º¤ø,__,ø¤º°`°º¤ø,\n")
-        print("             "); result = func(*args, **kwargs)
+        print("\n°º¤ø,__,ø¤º°`°º¤ø,__,ø¤°º¤ø,__,ø¤º°`°º¤ø,\n\n")
+        result = func(*args, **kwargs)
         print("\n\n°º¤ø,__,ø¤º°`°º¤ø,__,ø¤°º¤ø,__,ø¤º°`°º¤ø,\n")
         return result
     return wrapper

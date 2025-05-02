@@ -20,7 +20,7 @@ class Game:
         self.board.draw_valid_moves(self.win, self.valid_moves)
         pygame.display.update()
 
-    @make_my_text_beautiful
+    @make_my_text_pretty
     def reset(self):
         self._init()
         clear_move_log()
@@ -29,38 +29,20 @@ class Game:
 
     def select(self, row, col):
         piece = self.get_piece(row, col)
-
-        print(f"Selected: {piece} Type: {type(piece)} at ({row}, {col})")  #test
-
         if self.selected:
             result = self._move(row, col)
-
-            print(f"Tried move to ({row},{col}): {'Success' if result else 'Failed'}")  #test
-        
             if not result:
                 self.selected = None
                 return self.select(row, col)
         elif piece != 0 and piece.colour == self.turn:
-
-            print(f"Piece colour: {piece.colour}, Turn: {self.turn}")  #test
-
             self.selected = piece
             self.valid_moves = self.get_valid_moves(piece)
-
-            print(f"Selected new piece with valid moves: {self.valid_moves}")  #test
-
             return True
-        else:
-            print(f"Didn't select — piece: {piece}, turn: {self.turn}")  #test
         return False
 
 
 
     def _move(self, row, col):
-
-        print(f"Valid moves are: {self.valid_moves}")  #test
-        print(f"Trying move from ({self.selected.row}, {self.selected.col}) to ({row}, {col})")  #test
-
         if self.selected and (row, col) in self.valid_moves:
             from_row, from_col = self.selected.row, self.selected.col
             self.board.move(self.selected, row, col)
@@ -77,8 +59,6 @@ class Game:
 
             self.change_turn()
             return True
-        
-        print(f"Trying to move to ({row}, {col}) — Valid: {self.valid_moves}")  #test
 
         return False
 
@@ -104,10 +84,16 @@ class Game:
                 self.black_count -= 1
         return None
 
-    #@make_my_text_beautiful
     def winner(self):
         if self.white_count <= 0:
             return "black"
         elif self.black_count <= 0:
             return "white"
         return None
+    
+    @make_my_text_pretty
+    def announce_winner(self):
+        winner = self.winner()
+        if winner:
+            print(f"              {winner.capitalize()} wins!")
+        return winner

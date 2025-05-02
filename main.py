@@ -14,7 +14,6 @@ def get_coordinates_from_mouse(pos):
     x, y = pos
     row = y // SQUARE_SIZE
     col = x // SQUARE_SIZE
-    print(row, col)  #test
     return row, col
 
 def main():
@@ -43,9 +42,8 @@ def main():
 
         winner = game.winner()
         if winner:
-            print(f"{winner.capitalize()} wins!")
+            game.announce_winner()
             run = False
-
     pygame.quit()
 
 main()

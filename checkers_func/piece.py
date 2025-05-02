@@ -35,7 +35,7 @@ class Piece:
 
     def draw(self, win):
         radius = SQUARE_SIZE // 2 - PADDING
-        pygame.draw.circle(win, BLACK, (self.__x, self.__y), radius + OUTLINE)  #error here
+        pygame.draw.circle(win, BLACK, (self.__x, self.__y), radius + OUTLINE)
         pygame.draw.circle(win, self.__colour, (self.__x, self.__y), radius)
         if self.__queen:
             crown = pygame.font.SysFont("Arial", 24).render("Q", True, GREEN)

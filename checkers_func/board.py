@@ -19,7 +19,7 @@ class Board:
             for col in range(COLS):
                 piece = self.board[row][col]
                 if piece != 0:
-                    piece.draw(win)  #error here
+                    piece.draw(win)
 
     def create_board(self):
         for row in range(ROWS):
@@ -27,7 +27,7 @@ class Board:
             for col in range(COLS):
                 if (row + col) % 2 != 0:
                     if row < 3:
-                        self.board[row].append(PieceFactory.create_piece(row, col, "black")) #Here used design patterns
+                        self.board[row].append(PieceFactory.create_piece(row, col, "black"))
                     elif row > 4:
                         self.board[row].append(PieceFactory.create_piece(row, col, "white"))
                     else:
@@ -41,7 +41,7 @@ class Board:
     
     def get_valid_moves(self, piece):
         moves = {}
-        self._traverse(piece, piece.row, piece.col, [], moves)  #look into
+        self._traverse(piece, piece.row, piece.col, [], moves)
         return moves
 
     def draw_valid_moves(self, win, moves):
