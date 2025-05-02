@@ -96,7 +96,7 @@ class Game:
 
     def remove(self, pieces):
         for piece in pieces:
-            self.board[piece.row][piece.col] = 0
+            self.board.board[piece.row][piece.col] = 0
             if piece.colour == "white":
                 self.white_count -= 1
             else:

@@ -2,6 +2,9 @@ import pygame
 from checkers_func.game import Game
 from checkers_func.constants import WIDTH, HEIGHT, SQUARE_SIZE
 
+pygame.init()
+pygame.font.init()
+
 FPS = 60
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -36,6 +39,10 @@ def main():
                     game.reset()
 
         game.update()
+        winner = game.winner()
+        if winner:
+            print(f"{winner.capitalize()} wins!")
+            run = False
     pygame.quit()
 
 main()

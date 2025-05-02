@@ -59,11 +59,13 @@ class Board:
         piece.move(row, col)
         self.board[row][col] = piece
 
+        if (piece.colour == "white" and row == 0) or (piece.colour == "black" and row == ROWS - 1):
+            piece.make_queen()
+
     def _traverse(self, piece, row, col, jumped, moves, visited=set()):  #redo
         directions = DIRECTIONS[piece.colour]
         if piece.is_queen():
             directions = DIRECTIONS["white"] + DIRECTIONS["black"]
-
 
         for dr, dc in directions:
             r = row + dr
