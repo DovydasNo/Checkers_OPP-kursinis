@@ -44,6 +44,9 @@ class Piece:
     @property
     def col(self):
         return self.__col
+    
+    def get_possition(self):
+        return self.row, self.col
 
     @property
     def colour(self):
