@@ -64,7 +64,14 @@ Kodo paskirstymas po kelis failus ir yra abstrakcija. Geriausias jos pavyzdys yr
  
 ### Paveldėjimas
 
-*Dar nepanaudota, bet galima išskirti `Piece` klasę kaip tėvinę ir `QueenPiece` kaip dukterinę.
+Iš `piece.py`:
+
+    class QueenPiece(Piece):
+    def __init__(self, row, col, colour_name):
+        super().__init__(row, col, colour_name)
+        self._is_queen = True
+
+Šiuo atveju, `Piece` klasė yra tėvinė, `QueenPiece` kaip dukterinė ima argumentus ir prideda viena savo. Tai bendru atvėju sumažina kodo ir pasikartojančių argumentų apimtį.
 
  
 ### Inkapsuliacija
