@@ -59,10 +59,9 @@ class Board:
     def move(self, piece, row, col):
         self.board[piece.row][piece.col] = 0
         piece.move(row, col)
-        self.board[row][col] = piece
-
         if (piece.colour == "white" and row == 0) or (piece.colour == "black" and row == ROWS - 1):
-            piece.make_queen()
+            piece = PieceFactory.create_piece(row, col, piece.colour, is_queen=True)
+        self.board[row][col] = piece
 
     def _traverse(self, piece, row, col, jumped, moves, visited=set()):
         directions = DIRECTIONS[piece.colour]

@@ -1,5 +1,5 @@
 import unittest
-from checkers_func.piece import Piece
+from checkers_func.piece import *
 
 class TestPiece(unittest.TestCase):
     def test_initial_position(self):
@@ -14,5 +14,5 @@ class TestPiece(unittest.TestCase):
     def test_queen_promotion(self):
         piece = Piece(2, 3, 'white')
         self.assertFalse(piece.is_queen())
-        piece.make_queen()
-        self.assertTrue(piece.is_queen())
+        queen_piece = PieceFactory.create_piece(piece.row, piece.col, piece.colour, is_queen=True)
+        self.assertTrue(queen_piece.is_queen())

@@ -3,60 +3,70 @@ from .constants import *
 
 class Piece:
     def __init__(self, row, col, colour_name):
-        self.__row = row
-        self.__col = col
-        self.__colour_name = colour_name
-        self.__colour = WHITE if colour_name == "white" else BLACK
-        self.__queen = False
-        self.__x = 0
-        self.__y = 0
-        self.__position()
+        self._row = row
+        self._col = col
+        self._colour_name = colour_name
+        self._colour = WHITE if colour_name == "white" else BLACK
+        self._queen = False
+        self._x = 0
+        self._y = 0
+        self._position()
     
-    def __position(self):
-        self.__x = self.__col * 100 + 50
-        self.__y = self.__row * 100 + 50
+    def _position(self):
+        self._x = self._col * 100 + 50
+        self._y = self._row * 100 + 50
 
     def get_coordinates(self):
-        return self.__x, self.__y
+        return self._x, self._y
     
     def move(self, row, col):
-        self.__row = row
-        self.__col = col
-        self.__position()
-
-    def is_queen(self):
-        return self.__queen
-    
-    def make_queen(self):
-        self.__queen = True
+        self._row = row
+        self._col = col
+        self._position()
 
     def draw(self, win):
         radius = SQUARE_SIZE // 2 - PADDING
-        pygame.draw.circle(win, BLACK, (self.__x, self.__y), radius + OUTLINE)
-        pygame.draw.circle(win, self.__colour, (self.__x, self.__y), radius)
-        if self.__queen:
-            win.blit(CROWN, (self.__x - CROWN.get_width() // 2, self.__y - CROWN.get_height() // 2))
+        pygame.draw.circle(win, BLACK, (self._x, self._y), radius + OUTLINE)
+        pygame.draw.circle(win, self._colour, (self._x, self._y), radius)
 
     @property
     def row(self):
-        return self.__row
+        return self._row
 
     @property
     def col(self):
-        return self.__col
+        return self._col
     
     def get_possition(self):
         return self.row, self.col
 
     @property
     def colour(self):
-        return self.__colour_name
+        return self._colour_name
+    
+    def is_queen(self):
+        return self._queen
+    
+    def make_queen(self):
+        pass
+
+class QueenPiece(Piece):
+    def __init__(self, row, col, colour_name):
+        super().__init__(row, col, colour_name)
+        self._is_queen = True
+
+    def is_queen(self):
+        return True
+    
+    def draw(self, win):
+        super().draw(win)
+        win.blit(CROWN, (self._x - CROWN.get_width() // 2, self._y - CROWN.get_height() // 2))
 
 
 class PieceFactory:
     @staticmethod
     def create_piece(row, col, colour_name, is_queen=False):
-        piece = Piece(row, col, colour_name)
         if is_queen:
-            piece.make_queen()
-        return piece
+            return QueenPiece(row, col, colour_name)
+        else:
+            return Piece(row, col, colour_name)
