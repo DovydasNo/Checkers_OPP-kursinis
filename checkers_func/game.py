@@ -81,9 +81,20 @@ class Game:
         return None
 
     def winner(self):
-        if self.white_count <= 0:
+        white_has_moves = False
+        black_has_moves = False
+        for row in range(ROWS):
+            for col in range(COLS):
+                piece = self.board.get_piece(row, col)
+                if piece != 0:
+                    if piece.colour == 'white' and self.board.get_valid_moves(piece):
+                        white_has_moves = True
+                    elif piece.colour == 'black' and self.board.get_valid_moves(piece):
+                        black_has_moves = True
+
+        if self.white_count <= 0 or not white_has_moves:
             return "black"
-        elif self.black_count <= 0:
+        elif self.black_count <= 0 or not black_has_moves:
             return "white"
         return None
     
